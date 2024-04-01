@@ -13,13 +13,13 @@ const user = require('../controllers/user')
 
 router.route('/')
     .get(permissions.isAdmin, user.list)
-    .post(permissions.isStaffOrisAdmin, user.create)
+    .post(permissions.isStaff, user.create)
 
 router.route('/:id')
     .get(permissions.isLogin, user.read)
     .put(permissions.isLogin, user.update)
     .patch(permissions.isLogin,user.update)
-    .delete(permissions.isStaffOrisAdmin, user.delete)
+    .delete(permissions.isStaff, user.delete)
 
 /* ------------------------------------------------------- */
 module.exports = router

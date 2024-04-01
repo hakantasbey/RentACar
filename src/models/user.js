@@ -12,6 +12,14 @@ const { mongoose } = require('../configs/dbConnection')
     "isStaff": false,
     "isAdmin": false
 }
+
+{
+  "username": "test1",
+  "password": "test1",
+  "email": "test1@test.com",
+  "firstName": "test",
+  "lastName": "test"
+}
 /* ------------------------------------------------------- */
 // User Model:
 
