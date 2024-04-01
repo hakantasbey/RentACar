@@ -98,5 +98,5 @@ const CarSchema = new  mongoose.Schema({
     timestamps: true
 })
 
-//Export 
+//Export:
 module.exports + mongoose.model('Car', CarSchema)
