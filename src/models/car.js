@@ -42,13 +42,13 @@ const CarSchema = new  mongoose.Schema({
     },
 
     brand: {
-        type: Sting,
+        type: String,
         trim: true,
         required: true,
     },
 
     model: {
-        type: Sting,
+        type: String,
         trim: true,
         required: true,
     },
