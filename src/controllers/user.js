@@ -49,6 +49,10 @@ module.exports = {
                 }
             }
         */
+
+        /* EĞER login olan kullanıcı admin değilse post işleminde yetkileri false  */
+        req.body.isStaff=false
+        req.body.isAdmin=false
        
         const data = await User.create(req.body)
 
@@ -63,6 +67,14 @@ module.exports = {
             #swagger.tags = ["Users"]
             #swagger.summary = "Get Single User"
         */
+
+        //* Baska bir kullaniciyi gormesini engelle
+        let customFilter = { _id: req.params.id }
+        if(!req.user.isAdmin && !req.user.isStaff) {
+            customFilter = { _id: req.user._id }
+        }
+
+        const data = await User.findOne(customFilter)
 
         res.status(200).send({
             error: false,
@@ -88,6 +100,20 @@ module.exports = {
                 }
             }
         */
+
+        //* Admin olmayan, isStaff ve isAdmin durumunu degistiremez.
+        if(!req.user.isAdmin) {
+            delete req.body.isStaff
+            delete req.body.isAdmin
+        }
+
+        //* Baska bir kullaniciyi guncellemesini engelle:
+        let customFilter = { _id: req.params.id }
+        if(!req.user.isAdmin && !req.user.isStaff) {
+            customFilter = { _id: req.user._id }
+        }
+
+        const data = await User.updateOne(customFilter, req.body, { runValidators: true })
 
         res.status(202).send({
             error: false,
