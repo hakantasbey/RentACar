@@ -68,6 +68,8 @@ module.exports = {
             #swagger.summary = "Get Single Reservation"
         */
 
+        const data = await Car.findOne({ _id: req.params.id })
+
         res.status(200).send({
             error: false,
             data
@@ -96,7 +98,7 @@ module.exports = {
         //* updatedId verisini req.user' dan al:
         req.body.updatedId = req.user._id
 
-
+        const data = await Car.updateOne(customFilter, req.body, { runValidators: true })
 
         res.status(202).send({
             error: false,
